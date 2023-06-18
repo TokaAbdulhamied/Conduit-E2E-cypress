@@ -3,11 +3,11 @@ describe("Signup flow", () => {
     cy.visit("/register");
     cy.get(".form-control").then(($els) => {
       const random = Math.floor(Math.random() * 100000);
-      cy.get($els[0]).type(`Tester${random}`);
-      cy.get($els[1]).type(`user+${random}@realworld.io`);
-      cy.get($els[2]).type("mysupersecretpassword");
+      cy.get("[data-testid=username]").type(`Tester${random}`);
+      cy.get("[data-testid=email]").type(`user+${random}@realworld.io`);
+      cy.get("[data-testid=password]").type("mysupersecretpassword");
     });
-    cy.get("button").click();
+    cy.get("[data-testid=signup-button]").click();
     cy.contains("No articles are here").should("be.visible");
   });
   it("check the login link", () => {
